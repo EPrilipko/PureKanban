@@ -1,0 +1,31 @@
+.root {
+  width: 310px;
+  height: 100%;
+
+  transform: none;
+  transition: transform ease-in-out 0.5s;
+}
+
+.rootDraggable {
+  cursor: pointer;
+}
+
+.rootDragging {
+  opacity: 0.5;
+}
+
+.rootDragOverlay {
+  cursor: grabbing;
+  opacity: 0.95;
+
+  transform: rotate(2deg);
+}
+
+.contentSlot {
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.bottomSlot {
+  margin-top: auto;
+}

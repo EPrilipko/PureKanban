@@ -1,0 +1,7 @@
+.root:hover .readIcon {
+    opacity: 1;
+}
+
+.readIcon {
+    opacity: 0;
+}

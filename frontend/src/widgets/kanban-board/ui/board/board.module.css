@@ -1,0 +1,26 @@
+.root {
+    padding: var(--mantine-spacing-md) 0;
+    height: 100%;
+}
+
+.title {
+    padding: 0 var(--mantine-spacing-lg);
+}
+
+.dndContent {
+    height: 100%;
+    padding: 0 var(--mantine-spacing-lg);
+    overflow-y: hidden;
+    gap: var(--mantine-spacing-md);
+
+  &::-webkit-scrollbar {
+      display: none;
+  }
+  
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.createColumnButton {
+    flex: 1;
+}

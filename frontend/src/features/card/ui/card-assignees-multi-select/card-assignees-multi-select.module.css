@@ -1,0 +1,5 @@
+.root {
+    :global(.mantine-ComboboxChevron-chevron) {
+        display: none;
+    }
+}

@@ -1,0 +1,94 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14.9-alpine3.18
+    container_name: kanban-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+    networks:
+      - kanban-network
+
+  migration-db:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: kanban-migration
+    command: npx mikro-orm migration:up --config ./dist/db/mikro-orm.config.js
+    env_file:
+      - ./backend/.env
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      DB_SCHEMA: ${DB_SCHEMA}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - kanban-network
+
+  seeder-db:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: kanban-seeder
+    command: npx mikro-orm seeder:run --config ./dist/db/mikro-orm.config.js
+    env_file:
+      - ./backend/.env
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      DB_SCHEMA: ${DB_SCHEMA}
+    depends_on:
+      migration-db:
+        condition: service_completed_successfully 
+    networks:
+      - kanban-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: kanban-backend
+    restart: always
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    env_file:
+      - ./backend/.env
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      DB_SCHEMA: ${DB_SCHEMA}
+      BACKEND_PORT: ${BACKEND_PORT}
+    depends_on:
+      - db
+    networks:
+      - kanban-network
+
+networks:
+  kanban-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

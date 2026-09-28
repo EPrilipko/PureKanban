@@ -1,0 +1,17 @@
+.root {
+  min-width: fit-content;
+  overflow: hidden;
+
+  border-radius: var(--mantine-radius-md);
+}
+
+.cardsList {
+  max-height: 100%;
+
+    &::-webkit-scrollbar {
+      display: none;
+  }
+  
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

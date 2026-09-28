@@ -1,0 +1,45 @@
+.root {
+  cursor: pointer;
+
+  border: 1px solid #DDE1E6;
+
+  transform: none;
+  transition: transform ease-in-out 0.5s;
+}
+
+.rootDragging {
+  opacity: 0.5;
+
+  border: 1px dashed;
+}
+
+.rootDragOverlay {
+  cursor: grabbing;
+  opacity: 0.95;
+
+  transform: rotate(2deg);
+}
+
+.firstRow {
+  margin-bottom: 30px;
+}
+
+.secondRow {
+  margin-bottom: 19px;
+}
+
+.date {
+  background: var(--mantine-color-indigo-5);
+  color: white;
+  border-radius: 6px;
+}
+
+.dateLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-2xs);
+}
+
+.notifyIcon:hover {
+  fill: currentColor;
+}

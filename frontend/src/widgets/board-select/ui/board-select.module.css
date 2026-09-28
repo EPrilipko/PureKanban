@@ -1,0 +1,46 @@
+.select {
+  min-width: 140px;
+  max-width: 240px;
+  width: fit-content;
+
+  :global(.mantine-Select-input) {
+    
+    font-weight: 600;
+    font-size: var(--mantine-font-size-sm);
+    cursor: pointer;
+    height: 32px;
+    /* padding-right: 24px;
+    padding-left: 24px; */
+    border-radius: var(--mantine-radius-sm);
+    transition: background-color 150ms ease, color 150ms ease;
+  
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* :global(.mantine-Select-input):hover {
+    background-color: var(--mantine-color-default-hover);
+  }
+
+  &:focus-within .chevron {
+    transform: rotate(180deg);
+    color: var(--mantine-color-text);
+  } */
+}
+
+.chevron {
+  color: var(--mantine-color-dimmed);
+  transition: transform 150ms ease, color 150ms ease;
+}
+
+.colorBox {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.selectSkeleton {
+  width: 180px;
+  height: 32px;
+}

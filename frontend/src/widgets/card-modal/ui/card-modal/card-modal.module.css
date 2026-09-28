@@ -1,0 +1,31 @@
+.header {
+    padding: var(--mantine-spacing-md) var(--mantine-spacing-lg);
+}
+
+.body {
+    padding: 0 var(--mantine-spacing-lg) var(--mantine-spacing-md) var(--mantine-spacing-lg);
+}
+
+.tab {
+    background-color: var(--mantine-color-gray-1);
+    color: var(--mantine-color-gray-5);
+}
+
+.tab[data-active] {
+    background-color: var(--mantine-color-gray-6);
+    color: var(--mantine-color-gray-1);
+}
+
+.tabLabel {
+    font-size: var(--mantine-font-size-sm);
+    line-height: var(--mantine-line-height-sm);
+}
+
+.leftSection {
+    flex: 1;
+    max-width: 100%;
+}
+
+.rightSection {
+    width: 250px;
+}

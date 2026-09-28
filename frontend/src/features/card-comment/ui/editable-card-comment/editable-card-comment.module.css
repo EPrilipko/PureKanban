@@ -1,0 +1,7 @@
+.root:hover .menuIcon {
+    opacity: 1;
+}
+
+.menuIcon {
+    opacity: 0;
+}
